@@ -10,7 +10,7 @@ This lab demonstrates real-time malware detection by integrating Wazuh SIEM with
 VirusTotal's threat intelligence platform. A Windows 10 endpoint is monitored using 
 Wazuh's File Integrity Monitoring (FIM) module, which triggers automated VirusTotal 
 hash lookups when suspicious files are created or modified. This simulates a 
-core SOC capability — detecting malicious files on endpoints before they can 
+core SOC capability - detecting malicious files on endpoints before they can 
 execute and cause damage.
 
 ---
@@ -28,13 +28,13 @@ execute and cause damage.
 
 ## Tools & Technologies
 
-- **Wazuh** — Open source SIEM and XDR platform
-- **VirusTotal** — Multi-engine threat intelligence and file scanning
-- **VirtualBox** — Hypervisor for lab environment
-- **Windows 10 VM** — Monitored endpoint (Wazuh agent)
-- **Wazuh OVA** — Manager/server running on Linux
-- **PowerShell** — Agent deployment and service management
-- **ossec.conf** — Wazuh configuration file edited for FIM and VirusTotal integration
+- **Wazuh** - Open source SIEM and XDR platform
+- **VirusTotal** - Multi-engine threat intelligence and file scanning
+- **VirtualBox** - Hypervisor for lab environment
+- **Windows 10 VM** - Monitored endpoint (Wazuh agent)
+- **Wazuh OVA** - Manager/server running on Linux
+- **PowerShell** - Agent deployment and service management
+- **ossec.conf** - Wazuh configuration file edited for FIM and VirusTotal integration
 
 ---
 
@@ -57,7 +57,7 @@ execute and cause damage.
 
 ## Setup & Configuration
 
-### Step 1 — Deploy Wazuh Manager
+### Step 1 - Deploy Wazuh Manager
 
 Install Wazuh using the official OVA file in VirtualBox. After booting, retrieve 
 the IP address via `ifconfig` and access the Wazuh dashboard at 
@@ -71,7 +71,7 @@ the IP address via `ifconfig` and access the Wazuh dashboard at
 
 ---
 
-### Step 2 — Deploy Wazuh Agent on Windows 10
+### Step 2 - Deploy Wazuh Agent on Windows 10
 
 Navigate to **Agents → Deploy New Agent** in the Wazuh dashboard. Select Windows 
 as the OS, enter the Wazuh server address, and name the agent. Copy the generated 
@@ -100,7 +100,7 @@ Confirm the agent appears as active in the Wazuh dashboard:
 
 ---
 
-### Step 3 — Configure VirusTotal Integration
+### Step 3 - Configure VirusTotal Integration
 
 Create a free VirusTotal account at virustotal.com and retrieve your API key 
 from your profile settings.
@@ -121,7 +121,7 @@ integration block inside the `<ossec_config>` tag, then restart the Wazuh Manage
 
 ---
 
-### Step 4 — Configure File Integrity Monitoring (FIM)
+### Step 4 - Configure File Integrity Monitoring (FIM)
 
 On the Windows agent, edit the ossec.conf file at 
 `C:\\Program Files (x86)\\ossec-agent\\ossec.conf`. Set `<disabled>` to `no` 
@@ -141,7 +141,7 @@ Restart the Wazuh agent on Windows to apply the changes:
 
 ---
 
-## Detection Use Case — EICAR Malware Test
+## Detection Use Case - EICAR Malware Test
 
 To validate the detection chain, download the EICAR anti-malware test file 
 from eicar.org and drop it into the monitored Documents folder.
@@ -153,7 +153,7 @@ from eicar.org and drop it into the monitored Documents folder.
 
 Two alerts fire in sequence on the Wazuh dashboard:
 
-**Alert 1 — FIM detects new file creation:**
+**Alert 1 - FIM detects new file creation:**
 
 <img width="1488" height="838" alt="404553717-2b7d4670-b9cb-4f1e-a092-cacd735ca731" src="https://github.com/user-attachments/assets/b914ee1d-53d2-4c5d-829a-dc82465714a9" />
 
@@ -161,7 +161,7 @@ Two alerts fire in sequence on the Wazuh dashboard:
 The FIM module immediately flags that a new file has been added to the 
 monitored directory, triggering the VirusTotal integration.
 
-**Alert 2 — VirusTotal confirms malicious file:**
+**Alert 2 - VirusTotal confirms malicious file:**
 
 <img width="1488" height="820" alt="404553751-43c960f0-41ad-41d9-8c18-2cd894f099f3" src="https://github.com/user-attachments/assets/c3770979-10f4-4014-8e1e-3a94ace748ab" />
 
@@ -179,7 +179,7 @@ the automated detection chain.
 - The VirusTotal API integration automatically submitted the file hash and 
   returned a positive malware detection without manual analyst intervention
 - The complete detection chain from file creation to confirmed alert 
-  required no manual triage — demonstrating automated threat detection 
+  required no manual triage - demonstrating automated threat detection 
   at the endpoint level
 - This integration replicates a real SOC capability: automated IOC 
   enrichment via threat intelligence platforms
